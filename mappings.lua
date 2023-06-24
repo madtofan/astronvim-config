@@ -6,12 +6,17 @@
 return {
   -- first key is the mode
   n = {
+    -- vim.api.nvim_buf_set_option('n', '<space>e',  { noremap=true, silent=true })
+    ["<leader>s"] = { "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>", desc = "Show diagnostics in a popup" },
     -- second key is the lefthand side of the map
     -- mappings seen under group name "Buffer"
     ["<leader>bn"] = { "<cmd>tabnew<cr>", desc = "New tab" },
     ["<leader>bD"] = {
       function()
-        require("astronvim.utils.status").heirline.buffer_picker(function(bufnr) require("astronvim.utils.buffer").close(bufnr) end)
+        require("astronvim.utils.status").heirline.buffer_picker(function(bufnr)
+          require("astronvim.utils.buffer").close(
+            bufnr)
+        end)
       end,
       desc = "Pick to close",
     },
